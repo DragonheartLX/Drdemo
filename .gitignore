@@ -1,0 +1,12 @@
+# Visual Studio
+.vs/
+**/*.user
+**/*.filters
+**/obj/
+**/bin/
+
+# Visual Studio Code
+.vscode/
+
+# Build Folder
+build/
