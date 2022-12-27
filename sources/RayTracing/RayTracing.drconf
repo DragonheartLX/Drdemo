@@ -1,0 +1,6 @@
+aspectRatio=1.777777777777777679
+renderWidth=1920
+renderHeight=1080
+outPath=ImageOutput
+samples_per_pixel=1
+max_depth=5

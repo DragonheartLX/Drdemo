@@ -11,7 +11,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 声明C++项目
-project(RayTracing LANGUAGES CXX)
+project(Breakout LANGUAGES CXX)
 
 # 寻找库的头文件
 set(DEMO_HEADER_PATH
@@ -32,15 +32,32 @@ file(GLOB DEMO_SOURCE_PATH
 )
 
 # 添加编译目标
-add_executable(RayTracing ${DEMO_SOURCE_PATH})
+add_executable(Breakout 
+    ${DEMO_SOURCE_PATH}
+)
 
 # 引入全部头文件路径
-target_include_directories(RayTracing PUBLIC 
+target_include_directories(Breakout PUBLIC 
     ${DEMO_HEADER_PATH}
 )
 
 #依赖库
 find_package(Threads)
-    target_link_libraries(RayTracing ${CMAKE_THREAD_LIBS_INIT})
-find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
-    target_link_libraries(RayTracing PRIVATE sfml-system sfml-network sfml-graphics sfml-window)
+    target_link_libraries(Breakout ${CMAKE_THREAD_LIBS_INIT})
+find_package(glfw3 CONFIG REQUIRED)
+    target_link_libraries(Breakout PRIVATE glfw)
+find_package(glad CONFIG REQUIRED)
+    target_link_libraries(Breakout PRIVATE glad::glad)
+find_package(glm CONFIG REQUIRED)
+    target_link_libraries(Breakout PRIVATE glm::glm)
+
+#if (DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+#    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
+#endif()
+#if (DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
+#    set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}")
+#endif()
+#
+#project(OpenGL)
+#
+#message("CMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}")
